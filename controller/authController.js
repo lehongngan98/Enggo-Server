@@ -147,10 +147,10 @@ const forgotPassword = asyncHandler(async (req, res) => {
     const randPassword = (Math.random() * 900000 + 100000).toFixed(0); // Ensure password is a string
 
     const data = {
-        from: `"New Password 👻" <${process.env.USERNAME_EMAIL}>`,
+        from: `"Đặt lại mật khẩu 🖐🏿" <${process.env.USERNAME_EMAIL}>`,
         to: email,
-        subject: "Forgot Password",
-        text: "your new password  email",
+        subject: "Quên mật khẩu",
+        text: "mật khảu mới của bạn ",
         html: `<h1>${randPassword}</h1>`,
     };
 
