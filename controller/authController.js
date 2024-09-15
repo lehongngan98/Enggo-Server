@@ -187,6 +187,8 @@ const forgotPassword = asyncHandler(async (req, res) => {
 
 const handleLoginWithGoogle = asyncHandler(async (req, res) => {
     const userInfo = req.body;
+    console.log("user info", userInfo);
+    
 
     const existingUser = await UserModel.findOne({ email: userInfo.email });
 
@@ -199,11 +201,14 @@ const handleLoginWithGoogle = asyncHandler(async (req, res) => {
     } else {
         const newUser = new UserModel({
             email: userInfo.email,
-            fullname: userInfo.name,
+            fullname: userInfo.fullname,
             photoURL: userInfo.photo,
             ...userInfo,
         });
 
+
+        
+        
         await newUser.save();
 
         user.accesstoken = await getJWT(userInfo.email, newUser._id);
