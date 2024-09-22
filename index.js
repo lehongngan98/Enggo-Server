@@ -5,6 +5,9 @@ const cors = require('cors');
 const authRouter = require('./routers/authRouter');
 const connectDB = require('./configs/connectDB');
 const errorMiddleHandle = require('./middlewares/errorMiddleWare');
+const topicRoutes = require('./routers/topicRouter');
+const vocabularyRoutes = require('./routers/vocabularyRouter');
+
 const dotenv = require('dotenv');
 const app = express()
 
@@ -17,6 +20,8 @@ connectDB();
 const PORT = 3000;
 
 app.use('/auth', authRouter);
+app.use('/api', topicRoutes);
+// app.use('/api', vocabularyRoutes);
 
 app.use(errorMiddleHandle);
 
