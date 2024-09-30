@@ -7,6 +7,7 @@ const connectDB = require('./configs/connectDB');
 const errorMiddleHandle = require('./middlewares/errorMiddleWare');
 const topicRoutes = require('./routers/topicRouter');
 const vocabularyRoutes = require('./routers/vocabularyRouter');
+const newsRouter = require('./routers/newsRouter');
 
 const dotenv = require('dotenv');
 const app = express()
@@ -21,7 +22,8 @@ const PORT = 3000;
 
 app.use('/auth', authRouter);
 app.use('/api', topicRoutes);
-// app.use('/api', vocabularyRoutes);
+app.use('/api', vocabularyRoutes);
+app.use('/api', newsRouter);
 
 app.use(errorMiddleHandle);
 
