@@ -6,7 +6,8 @@ const VocabularySchema = new Schema({
   
   en: { type: String, required: true },
   vn: { type: String, required: true },
-  audio: { type: String, required: false },
+  audioEn: { type: String, required: false },
+  audioVn: { type: String, required: false },
 });
 
 // Create the model from the schema
