@@ -1,6 +1,4 @@
-
-const express = require('express')
-
+const express = require('express');
 const cors = require('cors');
 const authRouter = require('./routers/authRouter');
 const connectDB = require('./configs/connectDB');
@@ -10,12 +8,12 @@ const vocabularyRoutes = require('./routers/vocabularyRouter');
 const newsRouter = require('./routers/newsRouter');
 
 const dotenv = require('dotenv');
-const app = express()
+const app = express();
 
 dotenv.config();
 
-app.use(cors())
-app.use(express.json())
+app.use(cors({ origin: '*' })); // Cho phép tất cả các nguồn truy cập
+app.use(express.json());
 connectDB();
 
 const PORT = 3000;
@@ -27,10 +25,9 @@ app.use('/api', newsRouter);
 
 app.use(errorMiddleHandle);
 
-
-app.listen(PORT,(err) =>{
-    if(err){
-        console.log(err)
-    }
-    console.log(`Server is running at : http://localhost:${PORT}`)
-})
+app.listen(PORT, (err) => {
+  if (err) {
+    console.log(err);
+  }
+  console.log(`Server is running at : http://localhost:${PORT}`);
+});

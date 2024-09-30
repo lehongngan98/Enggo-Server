@@ -88,6 +88,24 @@ const getNewsById = async (req, res) => {
   }
 };
 
+const getNewsByTitle = async (req, res) => {
+  const { title } = req.params; // Extract title from query parameters
+  console.log("title :", title);
+  
+  try {
+    const news = await News.find({ title: title });
+    if (news.length === 0) {
+      return res.status(404).json({ message: 'News article not found' });
+    }
+    res.status(200).json({
+      status: 200,
+      data: news
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 
 module.exports = {
@@ -96,5 +114,6 @@ module.exports = {
   deleteNews,
   updateNews,
   getNewsById,
+  getNewsByTitle,
 
 };
