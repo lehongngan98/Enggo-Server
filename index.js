@@ -12,7 +12,8 @@ const app = express();
 
 dotenv.config();
 
-app.use(cors({ origin: '*' })); // Cho phép tất cả các nguồn truy cập
+// app.use(cors({ origin: '*' })); // Cho phép tất cả các nguồn truy cập
+app.use(cors());
 app.use(express.json());
 connectDB();
 
