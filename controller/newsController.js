@@ -15,11 +15,12 @@ const getAllNews = async (req, res) => {
 
 // Thêm tin tức mới
 const createNews = async (req, res) => {
-  const { title, content, image, information } = req.body;
+  const { title, content,category, image, information } = req.body;
 
   const newNews = new News({
     title,
     content,
+    category,
     image,
     information,
   });
@@ -88,12 +89,12 @@ const getNewsById = async (req, res) => {
   }
 };
 
-const getNewsByTitle = async (req, res) => {
-  const { title } = req.params; // Extract title from query parameters
-  console.log("title :", title);
+const getNewsByCategory = async (req, res) => {
+  const { category } = req.params; // Extract title from query parameters
+  console.log("category :", category);
   
   try {
-    const news = await News.find({ title: title });
+    const news = await News.find({ category: category });
     if (news.length === 0) {
       return res.status(404).json({ message: 'News article not found' });
     }
@@ -114,6 +115,6 @@ module.exports = {
   deleteNews,
   updateNews,
   getNewsById,
-  getNewsByTitle,
+  getNewsByCategory,
 
 };

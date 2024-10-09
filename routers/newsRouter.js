@@ -5,7 +5,7 @@ const {
   deleteNews,
   updateNews,
   getNewsById,
-  getNewsByTitle,
+  getNewsByCategory,
 } = require('../controller/newsController');
 
 const newsRouter = Router();
@@ -13,7 +13,7 @@ const newsRouter = Router();
 
 newsRouter.get('/news', getAllNews);
 newsRouter.get('/news/:id', getNewsById);
-newsRouter.get('/news/title/:title', getNewsByTitle);
+newsRouter.get('/news/category/:category', getNewsByCategory);
 newsRouter.post('/news', createNews);
 newsRouter.post('/news/:id', updateNews);
 newsRouter.delete('/news/:id', deleteNews);
