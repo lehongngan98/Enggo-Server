@@ -8,6 +8,7 @@ const vocabularyRoutes = require('./routers/vocabularyRouter');
 const newsRouter = require('./routers/newsRouter');
 const storyRouter = require('./routers/storyRouter');
 const quoteRouter = require('./routers/quoteRouter');
+const bilingualTopic = require('./routers/bilinggualTopicsRouter');
 
 const dotenv = require('dotenv');
 const app = express();
@@ -27,6 +28,7 @@ app.use('/api', vocabularyRoutes);
 app.use('/api', newsRouter);
 app.use('/api', storyRouter);
 app.use('/api', quoteRouter);
+app.use('/api', bilingualTopic);
 
 
 app.use(errorMiddleHandle);
