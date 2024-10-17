@@ -9,6 +9,7 @@ const newsRouter = require('./routers/newsRouter');
 const storyRouter = require('./routers/storyRouter');
 const quoteRouter = require('./routers/quoteRouter');
 const bilingualTopic = require('./routers/bilinggualTopicsRouter');
+const channelRouter = require('./routers/channelRouter');
 
 const dotenv = require('dotenv');
 const app = express();
@@ -29,6 +30,7 @@ app.use('/api', newsRouter);
 app.use('/api', storyRouter);
 app.use('/api', quoteRouter);
 app.use('/api', bilingualTopic);
+app.use('/api', channelRouter);
 
 
 app.use(errorMiddleHandle);
