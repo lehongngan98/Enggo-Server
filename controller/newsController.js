@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+const categoryNewsModel = require('../models/categoryNewsModel');
 const News = require('../models/newsModel');
 
 
@@ -90,14 +92,24 @@ const getNewsById = async (req, res) => {
 };
 
 const getNewsByCategory = async (req, res) => {
-  const { category } = req.params; // Extract title from query parameters
-  console.log("category :", category);
+  const { categoryId } = req.params;
   
+  console.log("Category ID received:", categoryId); // Log the received categoryId
+
   try {
-    const news = await News.find({ category: category });
+    const category = await categoryNewsModel.findById(categoryId); // Check if the category exists
+    console.log("Category found:", category); // Log the found category
+    if (!category) {
+      return res.status(404).json({ message: 'Category not found' });
+    }
+
+    // Use 'new' to create ObjectId
+    const news = await News.find({ category: categoryId});
+    
     if (news.length === 0) {
       return res.status(404).json({ message: 'News article not found' });
     }
+
     res.status(200).json({
       status: 200,
       data: news
@@ -106,8 +118,6 @@ const getNewsByCategory = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-
 
 module.exports = {
   getAllNews,

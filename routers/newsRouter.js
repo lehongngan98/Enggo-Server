@@ -13,10 +13,11 @@ const newsRouter = Router();
 
 newsRouter.get('/news', getAllNews);
 newsRouter.get('/news/:id', getNewsById);
-newsRouter.get('/news/category/:category', getNewsByCategory);
+newsRouter.get('/news/category/:categoryId', getNewsByCategory);
 newsRouter.post('/news', createNews);
 newsRouter.post('/news/:id', updateNews);
 newsRouter.delete('/news/:id', deleteNews);
+
 
 
 module.exports = newsRouter;
