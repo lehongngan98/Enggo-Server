@@ -12,8 +12,7 @@ const wordSchema = new mongoose.Schema({
 
 const quoteSchema = new mongoose.Schema({
     author: { type: String, required: true },
-    textEn: { type: String, required: true },
-    textVn: { type: String, required: true },
+    text: { type: String, required: true },    
     words: [wordSchema],
 });
 
