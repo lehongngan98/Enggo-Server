@@ -9,14 +9,10 @@ const subTopicSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    textEn: {
+    text: {
         type: String,
         required: true
-    },
-    textVn: {
-        type: String,
-        required: true
-    },
+    },    
     createdAt: { type: Date, default: Date.now },
 });
 
