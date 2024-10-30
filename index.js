@@ -12,7 +12,10 @@ const bilingualTopic = require('./routers/bilinggualTopicsRouter');
 const channelRouter = require('./routers/channelRouter');
 const categoryNewsRouter = require('./routers/categoryNewsRouter');
 const categoryTopicListenRouter = require('./routers/categoryTopicListenRouter');
+const categoryTopicVideoRouter = require('./routers/categoryTopicVideoRouter');
 const topicListenRouter = require('./routers/TopicListenRouter');
+const topicVideoRouter = require('./routers/topicVideosRouter');
+
 
 const dotenv = require('dotenv');
 const app = express();
@@ -37,6 +40,9 @@ app.use('/api', channelRouter);
 app.use('/api', categoryNewsRouter);
 app.use('/api', categoryTopicListenRouter);
 app.use('/api', topicListenRouter);
+app.use('/api', categoryTopicVideoRouter);
+app.use('/api', topicVideoRouter);
+
 
 
 app.use(errorMiddleHandle);
