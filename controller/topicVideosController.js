@@ -58,10 +58,27 @@ const deleteTopicVideos = async (req, res) => {
     }
 };
 
+const updateTopicVideos = async (req, res) => {
+    try {
+        const topicVideo = await TopicVideos.findByIdAndUpdate(req.params.id, req.body);
+        if (!topicVideo) {
+          return res.status(404).json({ message: 'topicVideo article not found' });
+        }
+        res.status(200).json({
+          status: 200,
+          message: 'topicVideo updated successfully',          
+        });
+    
+      } catch (error) {
+        res.status(500).json({ message: error.message });
+      }
+};
+
 
 module.exports = {
     getAllTopicVideos,
     getTopicVideosById,
     addTopicVideos,
-    deleteTopicVideos
+    deleteTopicVideos,
+    updateTopicVideos
 }
