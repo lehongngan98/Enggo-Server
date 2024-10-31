@@ -15,6 +15,7 @@ const categoryTopicListenRouter = require('./routers/categoryTopicListenRouter')
 const categoryTopicVideoRouter = require('./routers/categoryTopicVideoRouter');
 const topicListenRouter = require('./routers/TopicListenRouter');
 const topicVideoRouter = require('./routers/topicVideosRouter');
+const exercisesRouter = require('./routers/exercisesRouter');
 
 
 const dotenv = require('dotenv');
@@ -42,6 +43,7 @@ app.use('/api', categoryTopicListenRouter);
 app.use('/api', topicListenRouter);
 app.use('/api', categoryTopicVideoRouter);
 app.use('/api', topicVideoRouter);
+app.use('/api', exercisesRouter);
 
 
 
