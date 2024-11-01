@@ -4,9 +4,13 @@ const ContentSchema = new mongoose.Schema({
   text: String,
 });
 
+const AnswerSchema = new mongoose.Schema({
+  text: String, // Defines each answer text for choosePhrase
+});
+
 const ChoosePhraseSchema = new mongoose.Schema({
-  question: String,
-  answer: [{ text: String }],
+  question: String, // Defines the question for the choosePhrase
+  answer: [AnswerSchema], // Embeds the AnswerSchema as an array
 });
 
 const ExerciseSchema = new mongoose.Schema({
@@ -17,10 +21,10 @@ const ExerciseSchema = new mongoose.Schema({
   choosePhrase: [ChoosePhraseSchema],
 });
 
-const Exercises = new mongoose.Schema({
+const ExercisesSchema = new mongoose.Schema({
   title: String,
   background: String,
   Items: [ExerciseSchema],
 });
 
-module.exports = mongoose.model("Exercises", Exercises);
+module.exports = mongoose.model("Exercises", ExercisesSchema);

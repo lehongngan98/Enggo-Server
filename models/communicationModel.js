@@ -17,7 +17,7 @@ const VocabSchema = new Schema({
 });
 
 // Define the Vocabulary schema
-const VocabularySchema = new Schema({
+const CommunicationSchema = new Schema({
 
   image: {
     type: String,
@@ -39,6 +39,6 @@ const VocabularySchema = new Schema({
 });
 
 // Create the model from the schema
-const VocabularyModel = mongoose.model('vocabularies', VocabularySchema);
+const CommunicationModel = mongoose.model('Communication', CommunicationSchema);
 
-module.exports = VocabularyModel;
+module.exports = CommunicationModel;
