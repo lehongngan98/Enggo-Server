@@ -8,9 +8,9 @@ const itemsTopicVideos = new mongoose.Schema({
 });
 
 const topicVideosModel = new mongoose.Schema({
-    category: { type: String, required: true },
+    title: { type: String, required: true },
     background: { type: String, required: true },
-    list: [itemsTopicVideos],
+    Items: [itemsTopicVideos],
     createdAt: { type: Date, default: Date.now },
 });
 
