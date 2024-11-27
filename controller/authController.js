@@ -83,7 +83,7 @@ const verification = asyncHandler(async (req, res) => {
 });
 
 const register = asyncHandler(async (req, res) => {
-    const { email, fullname, password } = req.body;
+    const { email, fullname, password,photoURL } = req.body;
 
     const existingUser = await UserModel.findOne({ email });
 
@@ -95,7 +95,7 @@ const register = asyncHandler(async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    const newUser = new UserModel({ email, fullname, password: hashedPassword });
+    const newUser = new UserModel({ email, fullname, password: hashedPassword ,photoURL});
     await newUser.save();
     res.status(200).json({
         message: "User created!",
@@ -104,6 +104,7 @@ const register = asyncHandler(async (req, res) => {
             email: newUser.email,
             fullname: newUser.fullname,
             accesstoken: await getJWT(email, newUser.id),
+            photoURL: newUser.photoURL
         }
 
     });

@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     },
     photoURL:{
         type: String,
-        default: ''
+        default: 'https://static.vecteezy.com/system/resources/previews/024/983/914/original/simple-user-default-icon-free-png.png'
     },
     createdAt:{
         type: Date,
