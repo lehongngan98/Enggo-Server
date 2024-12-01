@@ -143,6 +143,48 @@ const login = asyncHandler(async (req, res) => {
     });
 });
 
+const ChangePassword = asyncHandler(async (req, res) => {
+    const { email, password } = req.body;
+
+    const data = {
+        from: `"Đặt lại mật khẩu 🖐🏿" <${process.env.USERNAME_EMAIL}>`,
+        to: email,
+        subject: "Thay đổi mật khẩu",
+        text: "mật khảu mới của bạn ",
+        html: `<h1>${password}</h1>`,
+    };
+
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+        res.status(400).json({ message: "User not found" });
+        throw new Error("User not found");
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    await UserModel.findByIdAndUpdate(user._id, {
+        password: hashedPassword,
+        isChangePassword: true,
+    }).then(() => {
+        console.log("update password successfully!");
+    }).catch((error) => {
+        console.log("error update password");
+    })
+
+    await handleSendEmail(data).then(() => {
+        res.status(200).json({
+            message: "Change Pasword successfully!",
+            data: [],
+            status: 200
+        });
+
+    }).catch((error) => {
+        console.log(error);
+        res.status(401).json({ message: "Can not send email" });
+    });
+});
+
 const forgotPassword = asyncHandler(async (req, res) => {
     const { email } = req.body;
     const randPassword = (Math.random() * 900000 + 100000).toFixed(0); // Ensure password is a string
@@ -185,6 +227,8 @@ const forgotPassword = asyncHandler(async (req, res) => {
         res.status(401).json({ message: "Can not send email" });
     });
 })
+
+
 
 const handleLoginWithGoogle = asyncHandler(async (req, res) => {
     const userInfo = req.body;
@@ -229,5 +273,5 @@ module.exports = {
     verification,
     forgotPassword,
     handleLoginWithGoogle,
-
+    ChangePassword
 }
