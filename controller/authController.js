@@ -115,6 +115,7 @@ const register = asyncHandler(async (req, res) => {
 const login = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
+    log(email, password);
     const existUser = await UserModel.findOne({ email });
 
     if (!existUser) {
