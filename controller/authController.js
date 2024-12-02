@@ -144,7 +144,7 @@ const login = asyncHandler(async (req, res) => {
     });
 });
 
-const ChangePassword = asyncHandler(async (req, res) => {
+const changePassword = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
     const data = {
@@ -274,5 +274,5 @@ module.exports = {
     verification,
     forgotPassword,
     handleLoginWithGoogle,
-    ChangePassword
+    changePassword
 }
